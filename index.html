@@ -1,7 +1,8 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'none'; object-src 'none'; media-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://raw.githubusercontent.com; font-src 'none'; object-src 'none'; media-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex, nofollow">
+<script>(function(){if(!window.fetch||!window.Response||location.protocol==='file:')return;var F=window.fetch.bind(window),P=null,T=0;function J(t){return new Response(t,{status:200,headers:{'Content-Type':'application/json'}})}function ep(t){try{return JSON.parse(t).generated_epoch||0}catch(e){return 0}}function site(){return F('./data.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()})}function load(){return fetch('https://raw.githubusercontent.com/cliwireee/tradelab-results/refs/heads/live-data/data.json?t='+Math.floor(Date.now()/10000),{cache:'no-store',referrerPolicy:'no-referrer'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){var e=ep(t);if(!e)throw 0;if(e>Date.now()/1000-900){window.tlLiveSrc='live';return t}return site().then(function(s){var n=ep(s)>e;window.tlLiveSrc=n?'site':'live';return n?s:t},function(){window.tlLiveSrc='live';return t})}).catch(function(){window.tlLiveSrc='site';return site()})}window.fetch=function(u,o){if(u!=='./data.json')return F(u,o);var n=Date.now();if(!P||n-T>25000){T=n;P=load();P.catch(function(){P=null})}return P.then(J)}})();</script>
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000"><title>TradeLab · Results 09 Oct 2026</title><style>
@@ -997,7 +998,7 @@ animation:lv-scan 1.6s linear infinite}
 </script><script>(function(){var el=document.getElementById('lab-root'),d=document.getElementById('lab-view');if(!el||!d||!window.LabView)return;try{window.LabView.render(el,JSON.parse(d.textContent),{})}catch(e){}})();</script></section><section class="wrap" id="tl-live" style="margin-top:14px">
 <div style="background:linear-gradient(180deg,#121826,#10151f);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:12px 14px">
 <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;font-size:13px;color:#8b94a7">
-<b id="tl-dot" style="color:#f59e0b">&#9679;</b><span id="tl-age" style="color:#eef1f7;font-weight:600">Last updated &mdash;</span>
+<b id="tl-dot" style="color:#f59e0b">&#9679;</b><span id="tl-age" style="color:#eef1f7;font-weight:600">Live data: updated &mdash;</span>
 <span>Gold (PAXG) <b id="tl-gold" style="color:#eef1f7;font-size:16px">&mdash;</b></span>
 <span>BTC <b id="tl-btc" style="color:#eef1f7;font-size:16px">&mdash;</b></span>
 <span id="tl-gen" style="color:#5d6679"></span></div>
@@ -1009,7 +1010,7 @@ Live Micro trades on PAXG 24/7 timing with MT5 XAUUSD costs (weekend trades are 
 function m(v,s){if(v==null)return '&mdash;';var a='$'+Math.abs(v).toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});return (v<0?'&minus;':(s&&v>0?'+':''))+a}
 function c(v){return v>0?'#22c55e':v<0?'#f43f5e':'#eef1f7'}
 function age(){if(!D)return;var a=Math.max(0,Math.round(Date.now()/1000-(D.generated_epoch||0)));
- var t=a<60?a+' s':Math.round(a/60)+' min';document.getElementById('tl-age').textContent='Last updated '+t+' ago';
+ var t=a<90?a+'s':Math.round(a/60)+' min';document.getElementById('tl-age').textContent='Live data: updated '+t+' ago';
  document.getElementById('tl-dot').style.color=a<900?'#22c55e':'#f59e0b'}
 function draw(d){D=d;var p=d.prices||{},g=p.gold||{},b=p.btc||{};
  document.getElementById('tl-gold').textContent=g.price?'$'+g.price.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
